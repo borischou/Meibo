@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		45DE276F1B8721DF0054413F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE276E1B8721DF0054413F /* AppDelegate.swift */; };
-		45DE27721B8721DF0054413F /* Meibo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45DE27701B8721DF0054413F /* Meibo.xcdatamodeld */; };
 		45DE27791B8721DF0054413F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DE27781B8721DF0054413F /* Images.xcassets */; };
 		45DE277C1B8721DF0054413F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DE277A1B8721DF0054413F /* LaunchScreen.xib */; };
 		45DE27881B8721DF0054413F /* MeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE27871B8721DF0054413F /* MeiboTests.swift */; };
@@ -30,7 +29,6 @@
 		45DE27691B8721DF0054413F /* Meibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DE276D1B8721DF0054413F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45DE276E1B8721DF0054413F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		45DE27711B8721DF0054413F /* Meibo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Meibo.xcdatamodel; sourceTree = "<group>"; };
 		45DE27781B8721DF0054413F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		45DE277B1B8721DF0054413F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		45DE27811B8721DF0054413F /* MeiboTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeiboTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +56,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00FDCB361BDA971600D34A26 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		45DE27601B8721DF0054413F = {
 			isa = PBXGroup;
 			children = (
@@ -79,11 +84,11 @@
 		45DE276B1B8721DF0054413F /* Meibo */ = {
 			isa = PBXGroup;
 			children = (
+				00FDCB361BDA971600D34A26 /* Utilities */,
 				45DE27931B8723CD0054413F /* Model */,
 				45DE276E1B8721DF0054413F /* AppDelegate.swift */,
 				45DE27781B8721DF0054413F /* Images.xcassets */,
 				45DE277A1B8721DF0054413F /* LaunchScreen.xib */,
-				45DE27701B8721DF0054413F /* Meibo.xcdatamodeld */,
 				45DE276C1B8721DF0054413F /* Supporting Files */,
 			);
 			path = Meibo;
@@ -225,7 +230,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45DE27721B8721DF0054413F /* Meibo.xcdatamodeld in Sources */,
 				45DE276F1B8721DF0054413F /* AppDelegate.swift in Sources */,
 				45DE27971B872B350054413F /* User.swift in Sources */,
 				45DE27951B87240D0054413F /* Status.swift in Sources */,
@@ -432,19 +436,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		45DE27701B8721DF0054413F /* Meibo.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				45DE27711B8721DF0054413F /* Meibo.xcdatamodel */,
-			);
-			currentVersion = 45DE27711B8721DF0054413F /* Meibo.xcdatamodel */;
-			path = Meibo.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 45DE27611B8721DF0054413F /* Project object */;
 }
