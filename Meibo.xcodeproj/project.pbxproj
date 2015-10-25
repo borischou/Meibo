@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00BAABA11BDD1F9600BA4F3D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BAABA01BDD1F9600BA4F3D /* Utils.swift */; settings = {ASSET_TAGS = (); }; };
 		45DE276F1B8721DF0054413F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE276E1B8721DF0054413F /* AppDelegate.swift */; };
 		45DE27791B8721DF0054413F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DE27781B8721DF0054413F /* Images.xcassets */; };
 		45DE277C1B8721DF0054413F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DE277A1B8721DF0054413F /* LaunchScreen.xib */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00BAABA01BDD1F9600BA4F3D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		45DE27691B8721DF0054413F /* Meibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DE276D1B8721DF0054413F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45DE276E1B8721DF0054413F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		00FDCB361BDA971600D34A26 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				00BAABA01BDD1F9600BA4F3D /* Utils.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				45DE276F1B8721DF0054413F /* AppDelegate.swift in Sources */,
 				45DE27971B872B350054413F /* User.swift in Sources */,
 				45DE27951B87240D0054413F /* Status.swift in Sources */,
+				00BAABA11BDD1F9600BA4F3D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
