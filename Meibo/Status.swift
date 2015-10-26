@@ -9,25 +9,27 @@
 import UIKit
 
 class Status: NSObject {
-    var created_at: String?
-    var status_id: Int?
-    var status_mid: Int?
-    var idstr: String?
-    var text: String?
-    var source: String?
-    var favorited = false
-    var truncated = false
-    var thumbnail_pic: String?
-    var bmiddle_pic: String?
-    var original_pic: String?
-    var reposts_count: Int?
-    var comments_count: Int?
-    var attitudes_count: Int?
-    var height: Float?
-    var heightForWaterfall: Float?
-    var user: User?
-    var retweeted_status: Status?
-    var pic_urls: NSMutableArray?
+    
+    var
+        created_at: String?,
+        status_id: Int?,
+        status_mid: Int?,
+        idstr: String?,
+        text: String?,
+        source: String?,
+        favorited = false,
+        truncated = false,
+        thumbnail_pic: String?,
+        bmiddle_pic: String?,
+        original_pic: String?,
+        reposts_count: Int?,
+        comments_count: Int?,
+        attitudes_count: Int?,
+        height: Float?,
+        heightForWaterfall: Float?,
+        user: User?,
+        retweeted_status: Status?,
+        pic_urls: NSMutableArray?
     
     func initWithDictionary(dictionary: NSDictionary) -> Status
     {
@@ -106,32 +108,6 @@ class Status: NSObject {
             self.retweeted_status = Status().initWithDictionary((dictionary.objectForKey("retweeted_status") as? NSDictionary)!)
         }
         
-        
-        
         return self
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

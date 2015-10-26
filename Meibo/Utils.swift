@@ -8,28 +8,30 @@
 
 import Foundation
 import UIKit
+import Accounts
 
-let uBigGap: CGFloat = 5
-let uSmallGap: CGFloat = 10
-let uHeadImgHeight: CGFloat = 50
-let sWidth: CGFloat = UIScreen.mainScreen().bounds.size.width
-let sHeight: CGFloat = UIScreen.mainScreen().bounds.size.height
-let imageHeight: CGFloat = (sWidth - 2 * uBigGap)/3
-let imageHeightForTwo: CGFloat = (sWidth - uBigGap)/2
-let uButtonHeight: CGFloat = sHeight / 25
-let maxHeightForWaterfallCoverPicture: CGFloat = sHeight / 4
-let fontSizeForWaterfall: CGFloat = 16.0
-let fontSizeForStatus: CGFloat = 16.0
-let fontSizeForComment: CGFloat = 13.0
-let cellWidthForWaterfall: CGFloat = (sWidth - 8.0) / 2
-let heightForWaterfallBottom: CGFloat = 15.0
-let smallGapForWaterfall: CGFloat = 2.0
-let bigGapForWaterfall: CGFloat = 4.0
-let wSmallGap: CGFloat = 2.0
-let wBottomLabelHeight: CGFloat = 15.0
+let
+    uBigGap: CGFloat = 5,
+    uSmallGap: CGFloat = 10,
+    uHeadImgHeight: CGFloat = 50,
+    sWidth: CGFloat = UIScreen.mainScreen().bounds.size.width,
+    sHeight: CGFloat = UIScreen.mainScreen().bounds.size.height,
+    imageHeight: CGFloat = (sWidth - 2 * uBigGap)/3,
+    imageHeightForTwo: CGFloat = (sWidth - uBigGap)/2,
+    uButtonHeight: CGFloat = sHeight / 25,
+    maxHeightForWaterfallCoverPicture: CGFloat = sHeight / 4,
+    fontSizeForWaterfall: CGFloat = 16.0,
+    fontSizeForStatus: CGFloat = 16.0,
+    fontSizeForComment: CGFloat = 13.0,
+    cellWidthForWaterfall: CGFloat = (sWidth - 8.0) / 2,
+    heightForWaterfallBottom: CGFloat = 15.0,
+    smallGapForWaterfall: CGFloat = 2.0,
+    bigGapForWaterfall: CGFloat = 4.0,
+    wSmallGap: CGFloat = 2.0,
+    wBottomLabelHeight: CGFloat = 15.0,
 
-let kBarColor: UIColor = UIColor(red: 59.0/255, green: 59.0/255, blue: 59.0/255, alpha: 1.0)
-let kBackgroundColor: UIColor = UIColor(red: 30.0/255, green: 30.0/255, blue: 30.0/255, alpha: 1.0)
+    kBarColor: UIColor = UIColor(red: 59.0/255, green: 59.0/255, blue: 59.0/255, alpha: 1.0),
+    kBackgroundColor: UIColor = UIColor(red: 30.0/255, green: 30.0/255, blue: 30.0/255, alpha: 1.0)
 
 extension UIColor
 {
@@ -56,6 +58,78 @@ extension UIColor
     static func customGreen() -> UIColor
     {
         return UIColor(red: 139.0/255, green: 195.0/255, blue: 74.0/255, alpha: 1.0)
+    }
+}
+
+extension NSString
+{
+    static func middlePictureUrlWithThumbUrl(url: NSString) -> NSString
+    {
+        return url.stringByReplacingOccurrencesOfString("thumbnail", withString: "bmiddle")
+    }
+    
+    static func largePictureUrlWithThumbUrl(url: NSString) -> NSString
+    {
+        return url.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
+    }
+    
+    static func formattedNumber(num: NSInteger) -> NSString
+    {
+        var numStr: NSString?
+        
+        if num > 0 && num < 1000
+        {
+            numStr = "\(num)"
+        }
+        if num > 999 && num < 10000
+        {
+            numStr = "\(CGFloat(num/1000))"
+        }
+        if num > 9999 && num < 10000 * 100
+        {
+            numStr = "\(CGFloat(num/10000))"
+        }
+        if num >= 10000*100
+        {
+            numStr = "\(num/(10000*100))"
+        }
+        
+        return numStr!
+    }
+    
+    static func trim(source: NSString) -> NSString
+    {
+        var text: NSString?
+        var result: NSString? = source
+        
+        if source.length > 0
+        {
+            let scanner: NSScanner = NSScanner(string: source as String)
+            while !scanner.atEnd
+            {
+                scanner.scanUpToString("<", intoString: nil)
+                scanner.scanUpToString(">", intoString: &text)
+                result = result!.stringByReplacingOccurrencesOfString("\(text)>", withString: "")
+            }
+            let regEx: NSString = "<([^>]*)>"
+            result = result?.stringByReplacingOccurrencesOfString(regEx as String, withString: "")
+        }
+        
+        return result!
+    }
+    
+    static func formattedTime(time: NSString) -> NSString
+    {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "EEE MMM d HH:mm:ss Z yyyy"
+        formatter.timeZone = NSTimeZone(name: "Asia/Beijing")
+        formatter.locale = NSLocale(localeIdentifier: "en_CN")
+        
+        let date = formatter.dateFromString(time as String)
+        let outFormatter = NSDateFormatter()
+        outFormatter.timeZone = NSTimeZone(name: "Asia/Beijing")
+        outFormatter.dateFormat = "EEE HH:mm:ss yy-MM-dd"
+        return outFormatter.stringFromDate(date!)
     }
 }
 
@@ -248,13 +322,64 @@ class Utils: NSObject {
         if navController != nil
         {
             navController?.navigationBar.barTintColor = kBarColor
-            navController?.navigationBar.tintColor = 
+            navController?.navigationBar.tintColor = UIColor.customWhite()
+            navController?.navigationBar.layer.shadowOpacity = 0.2
+            navController?.navigationBar.layer.shadowOffset = CGSizeMake(0, 2)
+            navController?.navigationBar.layer.shadowColor = UIColor.blackColor().CGColor
+        }
+        
+        viewController.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.customWhite()]
+        viewController.view.backgroundColor = kBackgroundColor
+        
+        if viewController.isKindOfClass(UITableViewController)
+        {
+            (viewController as? UITableViewController)?.tableView.separatorStyle = .None
         }
     }
     
+    static func statusesWith(data: NSData) -> NSMutableArray
+    {
+        let statuses: NSMutableArray = []
+        var dict: NSDictionary?
+        
+        do
+        {
+            dict = try NSJSONSerialization.JSONObjectWithData(data, options: [.AllowFragments]) as? NSDictionary
+        }
+        catch
+        {
+            NSLog("error: \(error)")
+        }
+        
+        if dict!.objectForKey("statuses") != nil
+        {
+            let status_dicts = dict?.objectForKey("statuses") as! NSArray
+            for dict in status_dicts
+            {
+                statuses.addObject(Status().initWithDictionary(dict as! NSDictionary))
+            }
+        }
+        
+        return statuses
+    }
     
+    static func plistPath(filename: NSString) -> NSString
+    {
+        //获取Library/Caches目录
+        let paths: NSArray = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
+        let cachesDirectory: NSString = paths.firstObject as! NSString
+        
+        //将文件名拼在目录后面形成完整文件路径
+        return cachesDirectory.stringByAppendingPathComponent(cachesDirectory as String)
+    }
     
-    
+    static func systemAccounts() -> NSArray
+    {
+        let store = ACAccountStore()
+        let type = store.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierSinaWeibo)
+        let accounts = store.accountsWithAccountType(type)
+        return accounts
+    }
     
     
     

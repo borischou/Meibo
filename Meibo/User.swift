@@ -9,37 +9,38 @@
 import UIKit
 
 class User: NSObject {
-    var user_id: Int?
-    var idstr: String?
-    var screen_name: String?
-    var name: String?
-    var province: Int?
-    var city: Int?
-    var location: String?
-    var user_description: String?
-    var url: String?
-    var profile_image_url: String?
-    var profile_url: String?
-    var domain: String?
-    var weihao: String?
-    var gender: String?
-    var followers_count: Int?
-    var friends_count: Int?
-    var statuses_count: Int?
-    var favourites_count: Int?
-    var created_at: String?
-    var allow_all_act_msg: Bool?
-    var geo_enabled: Bool?
-    var verified: Bool?
-    var remark: String?
-    var allow_all_comment: Bool?
-    var avatar_large: String?
-    var avatar_hd: String?
-    var verified_reason: String?
-    var follow_me: Bool?
-    var online_status: Int?
-    var bi_followers_count: Int?
-    var lang: String?
+    var
+        user_id: Int?,
+        idstr: String?,
+        screen_name: String?,
+        name: String?,
+        province: Int?,
+        city: Int?,
+        location: String?,
+        user_description: String?,
+        url: String?,
+        profile_image_url: String?,
+        profile_url: String?,
+        domain: String?,
+        weihao: String?,
+        gender: String?,
+        followers_count: Int?,
+        friends_count: Int?,
+        statuses_count: Int?,
+        favourites_count: Int?,
+        created_at: String?,
+        allow_all_act_msg: Bool?,
+        geo_enabled: Bool?,
+        verified: Bool?,
+        remark: String?,
+        allow_all_comment: Bool?,
+        avatar_large: String?,
+        avatar_hd: String?,
+        verified_reason: String?,
+        follow_me: Bool?,
+        online_status: Int?,
+        bi_followers_count: Int?,
+        lang: String?
     
     func initWithDictionary(dictionary: NSDictionary) -> User {
         self.user_id = Int((dictionary.objectForKey("id") as? String)!)
@@ -76,31 +77,4 @@ class User: NSObject {
         
         return self
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
