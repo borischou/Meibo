@@ -28,6 +28,37 @@ let bigGapForWaterfall: CGFloat = 4.0
 let wSmallGap: CGFloat = 2.0
 let wBottomLabelHeight: CGFloat = 15.0
 
+let kBarColor: UIColor = UIColor(red: 59.0/255, green: 59.0/255, blue: 59.0/255, alpha: 1.0)
+let kBackgroundColor: UIColor = UIColor(red: 30.0/255, green: 30.0/255, blue: 30.0/255, alpha: 1.0)
+
+extension UIColor
+{
+    static func customWhite() -> UIColor
+    {
+        return UIColor(red: 238.0/255, green: 238.0/255, blue: 224.0/255, alpha: 1.0)
+    }
+    
+    static func firebrick() -> UIColor
+    {
+        return UIColor(red: 139.0/255, green: 26.0/255, blue: 26.0/255, alpha: 1.0)
+    }
+    
+    static func dodgerblue() -> UIColor
+    {
+        return UIColor(red: 16.0/255, green: 78.0/255, blue: 139.0/255, alpha: 1.0)
+    }
+    
+    static func seagreen() -> UIColor
+    {
+        return UIColor(red: 46.0/255, green: 139.0/255, blue: 87.0/255, alpha: 1.0)
+    }
+    
+    static func customGreen() -> UIColor
+    {
+        return UIColor(red: 139.0/255, green: 195.0/255, blue: 74.0/255, alpha: 1.0)
+    }
+}
+
 class Utils: NSObject {
     
     static func fontForStatus() -> CGFloat
@@ -212,7 +243,14 @@ class Utils: NSObject {
         return height
     }
     
-     
+    static func setupNavigationController(navController: UINavigationController?, viewController: UIViewController)
+    {
+        if navController != nil
+        {
+            navController?.navigationBar.barTintColor = kBarColor
+            navController?.navigationBar.tintColor = 
+        }
+    }
     
     
     
