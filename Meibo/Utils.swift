@@ -133,13 +133,8 @@ extension NSString
     }
 }
 
-class Utils: NSObject {
-    
-    static func fontForStatus() -> CGFloat
-    {
-        return 16.0
-    }
-    
+class Utils: NSObject
+{
     static func height(str: NSString, width: CGFloat, fontSize: CGFloat) -> CGFloat
     {
         if str.length == 0
@@ -186,7 +181,7 @@ class Utils: NSObject {
     static func getHeightForCell(text: String, statusImageNumber: NSInteger, retweetScreenName: String, retweetText: String, retweetImageNumber: NSInteger) -> CGFloat
     {
         var height: CGFloat = 0
-        let fontSize = Utils.fontForStatus()
+        let fontSize = fontSizeForStatus
         
         //头像
         height += uBigGap + uHeadImgHeight
