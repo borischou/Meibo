@@ -14,6 +14,7 @@
 		45DE27881B8721DF0054413F /* MeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE27871B8721DF0054413F /* MeiboTests.swift */; };
 		45DE27951B87240D0054413F /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE27941B87240D0054413F /* Status.swift */; };
 		45DE27971B872B350054413F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE27961B872B350054413F /* User.swift */; };
+		45F32E6C1BDDD23F00FFDDD7 /* BBNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F32E6B1BDDD23F00FFDDD7 /* BBNetworkManager.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		45DE27871B8721DF0054413F /* MeiboTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeiboTests.swift; sourceTree = "<group>"; };
 		45DE27941B87240D0054413F /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		45DE27961B872B350054413F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		45F32E6B1BDDD23F00FFDDD7 /* BBNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				00BAABA01BDD1F9600BA4F3D /* Utils.swift */,
+				45F32E6B1BDDD23F00FFDDD7 /* BBNetworkManager.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				45DE276F1B8721DF0054413F /* AppDelegate.swift in Sources */,
 				45DE27971B872B350054413F /* User.swift in Sources */,
 				45DE27951B87240D0054413F /* Status.swift in Sources */,
+				45F32E6C1BDDD23F00FFDDD7 /* BBNetworkManager.swift in Sources */,
 				00BAABA11BDD1F9600BA4F3D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

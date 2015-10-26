@@ -14,8 +14,19 @@ let uSmallGap: CGFloat = 10
 let uHeadImgHeight: CGFloat = 50
 let sWidth: CGFloat = UIScreen.mainScreen().bounds.size.width
 let sHeight: CGFloat = UIScreen.mainScreen().bounds.size.height
-let imageHeight = (sWidth - 2 * uBigGap)/3
-let imageHeightForTwo = (sWidth - uBigGap)/2
+let imageHeight: CGFloat = (sWidth - 2 * uBigGap)/3
+let imageHeightForTwo: CGFloat = (sWidth - uBigGap)/2
+let uButtonHeight: CGFloat = sHeight / 25
+let maxHeightForWaterfallCoverPicture: CGFloat = sHeight / 4
+let fontSizeForWaterfall: CGFloat = 16.0
+let fontSizeForStatus: CGFloat = 16.0
+let fontSizeForComment: CGFloat = 13.0
+let cellWidthForWaterfall: CGFloat = (sWidth - 8.0) / 2
+let heightForWaterfallBottom: CGFloat = 15.0
+let smallGapForWaterfall: CGFloat = 2.0
+let bigGapForWaterfall: CGFloat = 4.0
+let wSmallGap: CGFloat = 2.0
+let wBottomLabelHeight: CGFloat = 15.0
 
 class Utils: NSObject {
     
@@ -84,16 +95,124 @@ class Utils: NSObject {
             height += uSmallGap + Utils.heightForImages(statusImageNumber)
         }
         
+        //转发微博
+        if !retweetScreenName.isEmpty
+        {
+            //转发微博文本
+            height += uBigGap + Utils.height("@\(retweetScreenName):\(retweetText)", width: sWidth - 2 * uBigGap, fontSize: fontSize)
+            
+            //转发微博配图
+            if retweetImageNumber > 0
+            {
+                height += uSmallGap + Utils.heightForImages(retweetImageNumber)
+            }
+        }
         
+        //微博底部按钮
+        height += uSmallGap + uButtonHeight
         
         return height
     }
     
+    static func layoutImageViews(views: NSArray, imageNumber: NSInteger, topOffset: CGFloat) -> CGFloat
+    {
+        for view in views
+        {
+            (view as? UIImageView)!.frame = CGRectZero
+        }
+        if imageNumber == 0
+        {
+            return 0.0
+        }
+        if imageNumber == 1
+        {
+            let view: UIImageView = (views.firstObject as? UIImageView)!
+            view.frame = CGRectMake(uBigGap, topOffset + uSmallGap, imageHeightForTwo, imageHeightForTwo)
+            return uSmallGap + imageHeightForTwo
+        }
+        if imageNumber == 2
+        {
+            (views[0] as? UIImageView)!.frame = CGRectMake(0, topOffset + uSmallGap, imageHeightForTwo, imageHeightForTwo)
+            (views[1] as? UIImageView)!.frame = CGRectMake(imageHeightForTwo + topOffset + uSmallGap, topOffset + uSmallGap, imageHeightForTwo, imageHeightForTwo)
+            return uSmallGap + imageHeightForTwo
+        }
+        if imageNumber == 3
+        {
+            for var i = 0; i < imageNumber; i++
+            {
+                (views[i] as? UIImageView)!.frame = CGRectMake(CGFloat(i) * (imageHeight + uSmallGap), topOffset + uSmallGap, imageHeight, imageHeight)
+            }
+            return uSmallGap + imageHeight
+        }
+        if imageNumber == 4
+        {
+            (views[0] as? UIImageView)!.frame = CGRectMake(0, topOffset + uSmallGap, imageHeightForTwo, imageHeightForTwo)
+            (views[1] as? UIImageView)!.frame = CGRectMake(imageHeightForTwo + uSmallGap, topOffset + uSmallGap, imageHeightForTwo, imageHeightForTwo)
+            (views[2] as? UIImageView)!.frame = CGRectMake(0, topOffset + 2 * uSmallGap + imageHeightForTwo, imageHeightForTwo, imageHeightForTwo)
+            (views[3] as? UIImageView)!.frame = CGRectMake(imageHeightForTwo + uSmallGap, topOffset + 2 * uSmallGap + imageHeightForTwo, imageHeightForTwo, imageHeightForTwo)
+        }
+        if imageNumber > 4 && imageNumber <= 6
+        {
+            for var i = 0; i < 3; i++
+            {
+                (views[i] as? UIImageView)!.frame = CGRectMake(CGFloat(i) * (imageHeight + uSmallGap), topOffset + uSmallGap, imageHeight, imageHeight)
+            }
+            for var i = 0; i < imageNumber - 3; i++
+            {
+                (views[3 + i] as? UIImageView)!.frame = CGRectMake(CGFloat(i) * (imageHeight + uSmallGap), topOffset + uSmallGap, imageHeight, imageHeight)
+            }
+            return uSmallGap * 2.0 + imageHeight * 2.0
+        }
+        if (imageNumber >= 7 && imageNumber <= 9)
+        {
+            for var i = 0; i < 3; i++
+            {
+                (views[i] as? UIImageView)!.frame = CGRectMake(CGFloat(i) * (imageHeight + uSmallGap), topOffset + uSmallGap, imageHeight, imageHeight)
+            }
+            for var i = 0; i < 3; i++
+            {
+                (views[3 + i] as? UIImageView)!.frame = CGRectMake(CGFloat(i) * (imageHeight + uSmallGap), topOffset + uSmallGap + imageHeight + uSmallGap, imageHeight, imageHeight)
+            }
+            for var i = 0; i < imageNumber - 6; i++
+            {
+                (views[6 + i] as? UIImageView)!.frame = CGRectMake(CGFloat(i) * (imageHeight + uSmallGap), topOffset + uSmallGap + (imageHeight + uSmallGap) * 2, imageHeight, imageHeight)
+            }
+            return uSmallGap * 3 + imageHeight * 3;
+        }
+        return 0.0
+    }
     
+    static func heightForWaterfallCell(status: Status, textWidth: CGFloat) -> CGFloat
+    {
+        var height: CGFloat = 0
+        let fontSize: CGFloat = fontSizeForWaterfall
+        
+        //封面图片
+        if status.pic_urls?.count > 0 || status.retweeted_status?.pic_urls?.count > 0
+        {
+            height += maxHeightForWaterfallCoverPicture
+        }
+        
+        //微博文本
+        height += wSmallGap
+        height += Utils.height("@\(status.user?.screen_name):\(status.text)", width: textWidth, fontSize: fontSize)
+        
+        //转发微博文本
+        if status.retweeted_status != nil && status.retweeted_status?.pic_urls?.count < 1
+        {
+            height += wSmallGap
+            height += Utils.height("@\(status.retweeted_status?.user?.screen_name):\(status.retweeted_status?.text)", width: textWidth, fontSize: fontSize)
+        }
+        
+        //底部状态标签
+        height += wSmallGap
+        height += wBottomLabelHeight
+        height += wSmallGap
+        
+        return height
+    }
     
-    
-    
-    
+     
     
     
     
