@@ -11,6 +11,7 @@
 		2AFA51E8F5B055ACD4C0ED33 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D661EA3637F472DA835FF85 /* Pods.framework */; };
 		45D154241BDF4547009B7ED5 /* Counts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D154231BDF4547009B7ED5 /* Counts.swift */; };
 		45D154261BDF46CD009B7ED5 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D154251BDF46CD009B7ED5 /* Reply.swift */; };
+		45D1542A1BDF7700009B7ED5 /* BBStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D154291BDF7700009B7ED5 /* BBStatusTableViewCell.swift */; };
 		45DE276F1B8721DF0054413F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE276E1B8721DF0054413F /* AppDelegate.swift */; };
 		45DE27791B8721DF0054413F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DE27781B8721DF0054413F /* Images.xcassets */; };
 		45DE277C1B8721DF0054413F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DE277A1B8721DF0054413F /* LaunchScreen.xib */; };
@@ -38,6 +39,7 @@
 		1D661EA3637F472DA835FF85 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45D154231BDF4547009B7ED5 /* Counts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counts.swift; sourceTree = "<group>"; };
 		45D154251BDF46CD009B7ED5 /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
+		45D154291BDF7700009B7ED5 /* BBStatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBStatusTableViewCell.swift; sourceTree = "<group>"; };
 		45DE27691B8721DF0054413F /* Meibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DE276D1B8721DF0054413F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45DE276E1B8721DF0054413F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		45D154271BDF76CB009B7ED5 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				45D154281BDF76D0009B7ED5 /* HomeTab */,
+			);
+			name = Module;
+			sourceTree = "<group>";
+		};
+		45D154281BDF76D0009B7ED5 /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				45D154291BDF7700009B7ED5 /* BBStatusTableViewCell.swift */,
+			);
+			name = HomeTab;
+			sourceTree = "<group>";
+		};
 		45DE27601B8721DF0054413F = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +140,7 @@
 		45DE276B1B8721DF0054413F /* Meibo */ = {
 			isa = PBXGroup;
 			children = (
+				45D154271BDF76CB009B7ED5 /* Module */,
 				00FDCB361BDA971600D34A26 /* Utilities */,
 				45DE27931B8723CD0054413F /* Model */,
 				45DE276E1B8721DF0054413F /* AppDelegate.swift */,
@@ -324,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45D154261BDF46CD009B7ED5 /* Reply.swift in Sources */,
+				45D1542A1BDF7700009B7ED5 /* BBStatusTableViewCell.swift in Sources */,
 				45DE276F1B8721DF0054413F /* AppDelegate.swift in Sources */,
 				45F32E711BDE23BD00FFDDD7 /* Comment.swift in Sources */,
 				45DE27971B872B350054413F /* User.swift in Sources */,
