@@ -11,17 +11,17 @@ import UIKit
 class Status: NSObject {
     
     var
-        created_at: String?,
+        created_at: NSString?,
         status_id: Int?,
         status_mid: Int?,
-        idstr: String?,
-        text: String?,
-        source: String?,
-        favorited = false,
-        truncated = false,
-        thumbnail_pic: String?,
-        bmiddle_pic: String?,
-        original_pic: String?,
+        idstr: NSString?,
+        text: NSString?,
+        source: NSString?,
+        favorited: Bool?,
+        truncated: Bool?,
+        thumbnail_pic: NSString?,
+        bmiddle_pic: NSString?,
+        original_pic: NSString?,
         reposts_count: Int?,
         comments_count: Int?,
         attitudes_count: Int?,
@@ -110,4 +110,66 @@ class Status: NSObject {
         
         return self
     }
+    
+    func convertDictionary() -> Dictionary<String, AnyObject?>
+    {
+        var dict: [String: AnyObject?] = ["created_at": self.created_at, "id": NSNumber(integer: self.status_id!), "mid": NSNumber(integer: self.status_mid!), "idstr": self.idstr, "text": self.text, "source": self.source, "favorited": NSNumber(bool: self.favorited!), "truncated": NSNumber(bool: self.truncated!), "thumbnail_pic": self.thumbnail_pic, "bmiddle_pic": self.bmiddle_pic, "original_pic": self.original_pic, "reposts_count": NSNumber(integer: self.reposts_count!), "comments_count": NSNumber(integer: self.comments_count!), "attitudes_count": NSNumber(integer: self.attitudes_count!)]
+        
+        if self.pic_urls?.count > 0
+        {
+            var urls: NSMutableArray = []
+            for var url: NSString in urls
+            {
+                urls?.addObject(url)
+            }
+            
+        }
+        
+        return dict
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
