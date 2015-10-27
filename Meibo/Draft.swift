@@ -50,4 +50,9 @@ class Draft: NSObject {
         }
         return 80
     }
+    
+    func convertNSDictionary() -> NSDictionary
+    {
+        return ["text": self.text!, "flag": NSNumber(integer: self.draftType!), "url": self.url!, "images": self.images!, "params": self.params!, "time": self.time!]
+    }
 }

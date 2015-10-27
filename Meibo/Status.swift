@@ -25,8 +25,8 @@ class Status: NSObject {
         reposts_count: Int?,
         comments_count: Int?,
         attitudes_count: Int?,
-        height: Float?,
-        heightForWaterfall: Float?,
+        height: CGFloat?,
+        heightForWaterfall: CGFloat?,
         user: User?,
         retweeted_status: Status?,
         pic_urls: NSMutableArray?
@@ -108,68 +108,38 @@ class Status: NSObject {
             self.retweeted_status = Status().initWithDictionary((dictionary.objectForKey("retweeted_status") as? NSDictionary)!)
         }
         
+        self.calculateStatusHeight()
+        self.calculateWaterfallHeight()
+        
         return self
     }
     
-    func convertDictionary() -> Dictionary<String, AnyObject?>
+    func convertNSDictionary() -> NSDictionary
     {
-        var dict: [String: AnyObject?] = ["created_at": self.created_at, "id": NSNumber(integer: self.status_id!), "mid": NSNumber(integer: self.status_mid!), "idstr": self.idstr, "text": self.text, "source": self.source, "favorited": NSNumber(bool: self.favorited!), "truncated": NSNumber(bool: self.truncated!), "thumbnail_pic": self.thumbnail_pic, "bmiddle_pic": self.bmiddle_pic, "original_pic": self.original_pic, "reposts_count": NSNumber(integer: self.reposts_count!), "comments_count": NSNumber(integer: self.comments_count!), "attitudes_count": NSNumber(integer: self.attitudes_count!)]
+        let dict: NSDictionary = ["created_at": self.created_at!, "id": NSNumber(integer: self.status_id!), "mid": NSNumber(integer: self.status_mid!), "idstr": self.idstr!, "text": self.text!, "source": self.source!, "favorited": NSNumber(bool: self.favorited!), "truncated": NSNumber(bool: self.truncated!), "thumbnail_pic": self.thumbnail_pic!, "bmiddle_pic": self.bmiddle_pic!, "original_pic": self.original_pic!, "reposts_count": NSNumber(integer: self.reposts_count!), "comments_count": NSNumber(integer: self.comments_count!), "attitudes_count": NSNumber(integer: self.attitudes_count!)]
         
         if self.pic_urls?.count > 0
         {
-            var urls: NSMutableArray = []
-            for var url: NSString in urls
+            let urls: NSMutableArray = []
+            for url in urls
             {
-                urls?.addObject(url)
+                urls.addObject(["thumbnail_pic": url as! NSString])
             }
-            
+            dict.setValue(urls, forKey: "pic_urls")
         }
+        dict.setValue(self.user?.convertNSDictionary(), forKey: "user")
+        dict.setValue(self.retweeted_status?.convertNSDictionary(), forKey: "retweeted_status")
         
         return dict
     }
     
+    func calculateStatusHeight()
+    {
+        self.height = Utils.getHeightForCell(self.text! as String, statusImageNumber: self.pic_urls!.count, retweetScreenName: self.retweeted_status!.user!.screen_name!, retweetText: self.retweeted_status!.text! as String, retweetImageNumber: self.retweeted_status!.pic_urls!.count)
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func calculateWaterfallHeight()
+    {
+        self.heightForWaterfall = Utils.heightForWaterfallCell(self, textWidth: cellWidthForWaterfall - 4)
+    }
 }

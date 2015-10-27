@@ -77,4 +77,11 @@ class User: NSObject {
         
         return self
     }
+    
+    func convertNSDictionary() -> NSDictionary
+    {
+        let dict: NSDictionary = ["id": self.user_id!, "idstr": self.idstr!, "screen_name": self.screen_name!, "name": self.name!, "province": self.province!, "city": self.city!, "location": self.location!, "user_description": self.user_description!, "url": self.url!, "profile_image_url": self.profile_image_url!, "profile_url": self.profile_url!, "domain": self.domain!, "weihao": self.weihao!, "gender": self.gender!, "followers_count": NSNumber(integer: self.followers_count!), "friends_count": NSNumber(integer: self.friends_count!), "statuses_count": NSNumber(integer: self.statuses_count!), "favourites_count": NSNumber(integer: self.favourites_count!), "created_at": self.created_at!, "allow_all_act_msg": NSNumber(bool: self.allow_all_act_msg!), "geo_enabled": NSNumber(bool: self.geo_enabled!), "verified": NSNumber(bool: self.verified!), "remark": self.remark!, "allow_all_comment": NSNumber(bool: self.allow_all_comment!), "avatar_large": self.avatar_large!, "avatar_hd": self.avatar_hd!, "verified_reason": self.verified_reason!, "follow_me": NSNumber(bool: self.follow_me!), "online_status": NSNumber(integer: self.online_status!), "bi_followers_count": NSNumber(integer: self.bi_followers_count!), "lang": self.lang!]
+        
+        return dict
+    }  
 }
