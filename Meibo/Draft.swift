@@ -14,7 +14,8 @@ enum DraftType: NSInteger
     case DraftTypeOriginal = 0, DraftTypeComment, DraftTypeRepost, DraftTypeReply
 }
 
-class Draft: NSObject {
+class Draft: NSObject
+{
     var
     images: NSMutableArray?, //发送微博时的图片(NSData)
     params: NSDictionary?, //发送所需参数
@@ -26,12 +27,17 @@ class Draft: NSObject {
     
     func initWithDictionary(dictionary: NSDictionary) -> Draft
     {
-        self.text = dictionary.objectForKey("text") as? NSString
-        self.draftType = dictionary.objectForKey("flag")?.integerValue
-        self.params = dictionary.objectForKey("params") as? NSDictionary
-        self.time = dictionary.objectForKey("time") as? NSString
-        self.url = dictionary.objectForKey("url") as? NSString
-        self.height = self.draftHeight()
+        self = super.init()
+        
+        if self != nil
+        {
+            self.text = dictionary.objectForKey("text") as? NSString
+            self.draftType = dictionary.objectForKey("flag")?.integerValue
+            self.params = dictionary.objectForKey("params") as? NSDictionary
+            self.time = dictionary.objectForKey("time") as? NSString
+            self.url = dictionary.objectForKey("url") as? NSString
+            self.height = self.draftHeight()
+        }
         
         return self
     }

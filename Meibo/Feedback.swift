@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Feedback: NSObject {
+class Feedback: NSObject
+{
     var
     status_id: NSInteger?,
     comments: NSInteger?,
@@ -17,10 +18,15 @@ class Feedback: NSObject {
     
     func initWithNSDictionary(dictionary: NSDictionary) -> Feedback
     {
-        self.status_id = (dictionary.objectForKey("id") as? NSString)?.integerValue
-        self.comments = (dictionary.objectForKey("comments") as? NSString)?.integerValue
-        self.reposts = (dictionary.objectForKey("reposts") as? NSString)?.integerValue
-        self.attitudes = (dictionary.objectForKey("attitudes") as? NSString)?.integerValue
+        self = super.init()
+        
+        if self != nil
+        {
+            self.status_id = (dictionary.objectForKey("id") as? NSString)?.integerValue
+            self.comments = (dictionary.objectForKey("comments") as? NSString)?.integerValue
+            self.reposts = (dictionary.objectForKey("reposts") as? NSString)?.integerValue
+            self.attitudes = (dictionary.objectForKey("attitudes") as? NSString)?.integerValue
+        }
         
         return self
     }

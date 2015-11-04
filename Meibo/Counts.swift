@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Counts: NSObject {
+class Counts: NSObject
+{
     var
     followers_count: NSInteger?,
     friends_count: NSInteger?,
@@ -16,9 +17,14 @@ class Counts: NSObject {
     
     func initWithCounts(counts: NSDictionary) -> Counts
     {
-        self.followers_count = counts.objectForKey("followers_count")?.integerValue
-        self.friends_count = counts.objectForKey("friends_count")?.integerValue
-        self.statuses_count = counts.objectForKey("statuses_count")?.integerValue
+        self = super.init()
+        
+        if self != nil
+        {
+            self.followers_count = counts.objectForKey("followers_count")?.integerValue
+            self.friends_count = counts.objectForKey("friends_count")?.integerValue
+            self.statuses_count = counts.objectForKey("statuses_count")?.integerValue
+        }
         
         return self
     }

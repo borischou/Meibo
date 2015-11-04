@@ -32,26 +32,31 @@ class Comment: NSObject
     
     func initWithDictionary(dictionary: NSDictionary) -> Comment
     {
-        self.created_at = dictionary.objectForKey("created_at") as? NSString
-        self.text = dictionary.objectForKey("text") as? NSString
-        self.source = dictionary.objectForKey("source") as? NSString
-        self.mid = dictionary.objectForKey("mid") as? NSString
-        self.idstr = dictionary.objectForKey("idstr") as? NSString
-        self.comnt_id = (dictionary.objectForKey("id") as? NSString)?.integerValue
-        if dictionary.objectForKey("user") != nil
-        {
-            self.user = dictionary.objectForKey("user") as? User
-        }
-        if dictionary.objectForKey("status") != nil
-        {
-            self.status = dictionary.objectForKey("status") as? Status
-        }
-        if dictionary.objectForKey("reply_comment") != nil
-        {
-            self.reply_comment = dictionary.objectForKey("reply_comment") as? Comment
-        }
+        self = super.init()
         
-        self.calculateHeights()
+        if self != nil
+        {
+            self.created_at = dictionary.objectForKey("created_at") as? NSString
+            self.text = dictionary.objectForKey("text") as? NSString
+            self.source = dictionary.objectForKey("source") as? NSString
+            self.mid = dictionary.objectForKey("mid") as? NSString
+            self.idstr = dictionary.objectForKey("idstr") as? NSString
+            self.comnt_id = (dictionary.objectForKey("id") as? NSString)?.integerValue
+            if dictionary.objectForKey("user") != nil
+            {
+                self.user = dictionary.objectForKey("user") as? User
+            }
+            if dictionary.objectForKey("status") != nil
+            {
+                self.status = dictionary.objectForKey("status") as? Status
+            }
+            if dictionary.objectForKey("reply_comment") != nil
+            {
+                self.reply_comment = dictionary.objectForKey("reply_comment") as? Comment
+            }
+            
+            self.calculateHeights()
+        }
         
         return self
     }
